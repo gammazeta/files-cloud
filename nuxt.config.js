@@ -45,7 +45,7 @@ export default {
     '@braid/vue-formulate/nuxt'
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
+ 
   modules: [
     '@nuxtjs/axios'
   ],
@@ -53,7 +53,7 @@ export default {
     //baseURL:"http://localhost:5000"
     baseURL: "https://gammazeta-api.herokuapp.com"
   },
-  // Build Configuration: https://go.nuxtjs.dev/config-build
+  
   build: {
   }
 }
