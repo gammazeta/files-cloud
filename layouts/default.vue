@@ -63,8 +63,9 @@ export default {
       "set_current_connect",
     ]),
     connectSocket() {
-      let urlSocket = "ws://localhost:5000";
-      //let urlSocket = "wss://file-sharing-gz-api.herokuapp.com"
+      //let urlSocket = "ws://localhost:5000";
+      let urlSocket = "wss://file-sharing-gz-api.herokuapp.com";
+      
       let conSocket = new WebSocket(urlSocket);
       this.set_con_socket(conSocket);
 

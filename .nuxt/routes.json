@@ -1,0 +1,23 @@
+[
+  {
+    "name": "index-old",
+    "path": "/index-old",
+    "component": "/home/gz/Codes/Pbl/files-cloud/pages/index-old.vue",
+    "chunkName": "pages/index-old",
+    "_name": "_5fa3b1c6"
+  },
+  {
+    "name": "test",
+    "path": "/test",
+    "component": "/home/gz/Codes/Pbl/files-cloud/pages/test.vue",
+    "chunkName": "pages/test",
+    "_name": "_3cf3b268"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/gz/Codes/Pbl/files-cloud/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_7a5855ec"
+  }
+]

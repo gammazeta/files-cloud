@@ -50,9 +50,8 @@ export default {
     '@nuxtjs/axios'
   ],
   axios: {
-    //baseURL: "https://api.sucodev.jp/api/v1"
-    baseURL:"http://localhost:5000"
-    //baseURL: "https://file-sharing-gz-api.herokuapp.com"
+    //baseURL:"http://localhost:5000"
+    baseURL: "https://file-sharing-gz-api.herokuapp.com"
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

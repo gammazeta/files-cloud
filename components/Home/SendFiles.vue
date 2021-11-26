@@ -114,14 +114,14 @@ export default {
     },
     createFile(type) {
       let file = {
-        type:null
+        type: null,
       };
       switch (type) {
         case "TEXT":
-          file.type = "CREATE_TEXT"
+          file.type = "CREATE_TEXT";
           break;
         case "DRAW":
-          file.type = "CREATE_DRAW";     
+          file.type = "CREATE_DRAW";
           break;
       }
       this.openFileDetail(file);
@@ -139,7 +139,7 @@ export default {
       if (index >= 0) {
         this.filesData[index] = saveData;
         this.fileDetailData = saveData;
-      }else{
+      } else {
         this.filesData.push(saveData);
         this.fileDetailData = saveData;
       }
@@ -160,14 +160,20 @@ export default {
           typeFile: file.type,
         };
         this.connect.channel.send(JSON.stringify(initMessage));
+        
         const chunkSize = 16384;
         let fileReader = new FileReader();
         let offset = 0;
-
-        fileReader.addEventListener("load", (e) => {
-          console.log("on reader file :" + file.name);
+        
+        fileReader.addEventListener("load", async (e) => {
+          
           this.connect.channel.send(e.target.result);
           offset += e.target.result.byteLength;
+          //console.log(this.connect.channel.bufferedAmount);
+          /*if (offset % 81920000 == 0) {
+            console.log("sleep");
+            await new Promise((resolve) => setTimeout(resolve, 200));
+          }*/
           if (offset < file.size) {
             readSlice(offset);
           } else {
