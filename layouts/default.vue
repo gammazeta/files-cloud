@@ -63,17 +63,19 @@ export default {
       "set_current_connect",
     ]),
     connectSocket() {
-      //let urlSocket = "ws://localhost:5000";
-      let urlSocket = "wss://gammazeta-api.herokuapp.com";
+      let urlSocket = this.$store.state.urlSocket;
+      //let urlSocket = "wss://gammazeta-api.herokuapp.com";
 
       let conSocket = new WebSocket(urlSocket);
       this.set_con_socket(conSocket);
 
       conSocket.onmessage = (event) => {
-        let result = JSON.parse(event.data);
-        console.log("hava message socket");
-        console.log(result);
-        this.set_messages_socket(result);
+        try {
+          let result = JSON.parse(event.data);
+          console.log("hava message socket");
+          console.log(result);
+          this.set_messages_socket(result);
+        } catch {}
       };
     },
   },
