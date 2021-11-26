@@ -1,12 +1,12 @@
-export { default as FileDetail } from '../../components/FileDetail.vue'
-export { default as Loading } from '../../components/Loading.vue'
-export { default as Top } from '../../components/Top.vue'
-export { default as HomeConnect } from '../../components/Home/Connect.vue'
-export { default as HomeListConnect } from '../../components/Home/ListConnect.vue'
-export { default as HomeMyId } from '../../components/Home/MyId.vue'
-export { default as HomeNotification } from '../../components/Home/Notification.vue'
-export { default as HomeReceiveFiles } from '../../components/Home/ReceiveFiles.vue'
-export { default as HomeSendFiles } from '../../components/Home/SendFiles.vue'
+export const FileDetail = () => import('../../components/FileDetail.vue' /* webpackChunkName: "components/file-detail" */).then(c => wrapFunctional(c.default || c))
+export const Loading = () => import('../../components/Loading.vue' /* webpackChunkName: "components/loading" */).then(c => wrapFunctional(c.default || c))
+export const Top = () => import('../../components/Top.vue' /* webpackChunkName: "components/top" */).then(c => wrapFunctional(c.default || c))
+export const HomeConnect = () => import('../../components/Home/Connect.vue' /* webpackChunkName: "components/home-connect" */).then(c => wrapFunctional(c.default || c))
+export const HomeListConnect = () => import('../../components/Home/ListConnect.vue' /* webpackChunkName: "components/home-list-connect" */).then(c => wrapFunctional(c.default || c))
+export const HomeMyId = () => import('../../components/Home/MyId.vue' /* webpackChunkName: "components/home-my-id" */).then(c => wrapFunctional(c.default || c))
+export const HomeNotification = () => import('../../components/Home/Notification.vue' /* webpackChunkName: "components/home-notification" */).then(c => wrapFunctional(c.default || c))
+export const HomeReceiveFiles = () => import('../../components/Home/ReceiveFiles.vue' /* webpackChunkName: "components/home-receive-files" */).then(c => wrapFunctional(c.default || c))
+export const HomeSendFiles = () => import('../../components/Home/SendFiles.vue' /* webpackChunkName: "components/home-send-files" */).then(c => wrapFunctional(c.default || c))
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {
