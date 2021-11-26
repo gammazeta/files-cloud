@@ -51,7 +51,7 @@ export default {
   ],
   axios: {
     //baseURL:"http://localhost:5000"
-    baseURL: "https://file-sharing-gz-api.herokuapp.com"
+    baseURL: "https://gammazeta-api.herokuapp.com"
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

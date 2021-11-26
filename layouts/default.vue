@@ -64,8 +64,8 @@ export default {
     ]),
     connectSocket() {
       //let urlSocket = "ws://localhost:5000";
-      let urlSocket = "wss://file-sharing-gz-api.herokuapp.com";
-      
+      let urlSocket = "wss://gammazeta-api.herokuapp.com";
+
       let conSocket = new WebSocket(urlSocket);
       this.set_con_socket(conSocket);
 
