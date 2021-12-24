@@ -13,9 +13,9 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_736d69c8 from 'nuxt_plugin_plugin_736d69c8' // Source: ./components/plugin.js (mode: 'all')
-import nuxt_plugin_axios_9ce37f9c from 'nuxt_plugin_axios_9ce37f9c' // Source: ./axios.js (mode: 'all')
-import nuxt_plugin_nuxtplugin7d4a3870_57ef8d7e from 'nuxt_plugin_nuxtplugin7d4a3870_57ef8d7e' // Source: ./nuxt.plugin.7d4a3870.js (mode: 'all')
+import nuxt_plugin_plugin_83f6b848 from 'nuxt_plugin_plugin_83f6b848' // Source: ./components/plugin.js (mode: 'all')
+import nuxt_plugin_axios_2af8b8f2 from 'nuxt_plugin_axios_2af8b8f2' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_nuxtplugin1cb72c88_66ed529e from 'nuxt_plugin_nuxtplugin1cb72c88_66ed529e' // Source: ./nuxt.plugin.1cb72c88.js (mode: 'all')
 import nuxt_plugin_dialog_6edfaf84 from 'nuxt_plugin_dialog_6edfaf84' // Source: ../plugins/dialog (mode: 'client')
 import nuxt_plugin_notification_f433b93e from 'nuxt_plugin_notification_f433b93e' // Source: ../plugins/notification (mode: 'client')
 import nuxt_plugin_vuequilleditor_0fe903f3 from 'nuxt_plugin_vuequilleditor_0fe903f3' // Source: ../plugins/vue-quill-editor (mode: 'client')
@@ -212,16 +212,16 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_736d69c8 === 'function') {
-    await nuxt_plugin_plugin_736d69c8(app.context, inject)
+  if (typeof nuxt_plugin_plugin_83f6b848 === 'function') {
+    await nuxt_plugin_plugin_83f6b848(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_9ce37f9c === 'function') {
-    await nuxt_plugin_axios_9ce37f9c(app.context, inject)
+  if (typeof nuxt_plugin_axios_2af8b8f2 === 'function') {
+    await nuxt_plugin_axios_2af8b8f2(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_nuxtplugin7d4a3870_57ef8d7e === 'function') {
-    await nuxt_plugin_nuxtplugin7d4a3870_57ef8d7e(app.context, inject)
+  if (typeof nuxt_plugin_nuxtplugin1cb72c88_66ed529e === 'function') {
+    await nuxt_plugin_nuxtplugin1cb72c88_66ed529e(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_dialog_6edfaf84 === 'function') {

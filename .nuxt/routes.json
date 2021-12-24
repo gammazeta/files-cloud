@@ -2,15 +2,15 @@
   {
     "name": "test",
     "path": "/test",
-    "component": "/home/gz/Codes/Pbl/files-cloud/pages/test.vue",
+    "component": "/home/haiquy/Coding/PBL4/files-cloud/pages/test.vue",
     "chunkName": "pages/test",
-    "_name": "_3cf3b268"
+    "_name": "_9343a9b0"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/home/gz/Codes/Pbl/files-cloud/pages/index.vue",
+    "component": "/home/haiquy/Coding/PBL4/files-cloud/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_7a5855ec"
+    "_name": "_2e3cf52c"
   }
 ]
