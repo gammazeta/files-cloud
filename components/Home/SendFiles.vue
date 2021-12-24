@@ -53,6 +53,14 @@
           <input type="checkbox" class="" />
         </p>
 
+        <div class="myProgress" v-if="percentSend != 100">
+          <div
+            class="myBar"
+            :style="{
+              width: percentSend + '%',
+            }"
+          ></div>
+        </div>
         <div>
           <button
             type="button"
@@ -92,6 +100,7 @@ export default {
     return {
       filesData: [],
       fileDetailData: null,
+      percentSend: 100,
     };
   },
   computed: {
@@ -159,21 +168,24 @@ export default {
           size: file.size,
           typeFile: file.type,
         };
+        this.percentSend = 0;
+
+        console.log(this.connect);
+        console.log(this.connect.channel);
+
         this.connect.channel.send(JSON.stringify(initMessage));
-        
-        const chunkSize = 16384;
-        let fileReader = new FileReader();
+
+        //const chunkSize = 16384;
+        const chunkSize = 1024*1024;
         let offset = 0;
-        
+
+        let fileReader = new FileReader();
         fileReader.addEventListener("load", async (e) => {
-          
           this.connect.channel.send(e.target.result);
           offset += e.target.result.byteLength;
-          //console.log(this.connect.channel.bufferedAmount);
-          /*if (offset % 81920000 == 0) {
-            console.log("sleep");
-            await new Promise((resolve) => setTimeout(resolve, 200));
-          }*/
+          
+          this.percentSend = offset*100/file.size;
+
           if (offset < file.size) {
             readSlice(offset);
           } else {
@@ -200,6 +212,17 @@ export default {
 </script>
 
 <style scoped>
+.myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+.myBar {
+  width: 1%;
+  height: 10px;
+  background-color: #038ff4;
+}
+
 .fileContainerDiv {
   margin-top: 10px;
   padding: 10px;

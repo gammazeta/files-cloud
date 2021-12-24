@@ -38,6 +38,7 @@ export default {
             idConnect: null,
             conIce: null,
             channel: null,
+            channelMess:null,
             stateConnect: null,
           };
           this.add_list_connect(dataConnect);

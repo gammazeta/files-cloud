@@ -18,8 +18,13 @@
     <div class="w3-col m6">
       <div v-for="(connect, index) of list_connect" :key="connect.id">
         <div v-show="connect == current_connect">
-          <Connect @createOffer="createOffer" :connect="connect" />
+          <Connect
+            @createOffer="createOffer"
+            :connect="connect"
+            @openChat="openChat"
+          />
           <Send-files :connect="connect" :index="index" />
+          <Chat @closeChat="closeChat" v-show="showChat" :connect="connect" />
         </div>
       </div>
     </div>
@@ -39,6 +44,7 @@ import SendFiles from "../components/Home/SendFiles.vue";
 import ReceiveFiles from "../components/Home/ReceiveFiles.vue";
 import Notification from "../components/Home/Notification.vue";
 import { mapActions, mapGetters } from "vuex";
+import Chat from "../components/Chat.vue";
 export default {
   components: {
     MyId,
@@ -47,11 +53,13 @@ export default {
     SendFiles,
     ReceiveFiles,
     Notification,
+    Chat,
   },
 
   data() {
     return {
       notifications: [],
+      showChat: false,
     };
   },
 
@@ -71,6 +79,7 @@ export default {
           let notifiData = {
             iceConnect: this.messages_socket.iceConnect,
             idConnect: this.messages_socket.idConnect,
+            message: this.messages_socket.message,
           };
           this.notifications.unshift(notifiData);
           break;
@@ -92,34 +101,48 @@ export default {
       "set_current_connect",
       "add_files_receive",
       "set_file",
+      "set_mess",
     ]),
+
+    openChat() {
+      this.showChat = true;
+    },
+
+    closeChat() {
+      this.showChat = false;
+    },
 
     //connect ice server
     async connectIce(idAccept, idOffer) {
       const connection = await new RTCPeerConnection({
-        iceServers: this.$store.state.iceServers
+        iceServers: this.$store.state.iceServers,
       });
 
       //for send file
       let channel = await connection.createDataChannel("data");
+      let channelMess = await connection.createDataChannel("dataMess");
 
       //receive data
       let receiveMessage;
       let receiveBuffer = [];
       let idFiles;
       connection.ondatachannel = (event) => {
+  
         channel = event.channel;
         channel.onmessage = (event) => {
           console.log("receive channel");
+
           try {
             if (JSON.parse(event.data)) {
               receiveMessage = JSON.parse(event.data);
-              receiveMessage.sizeReceived = 0;
-
-              idFiles = this.files_receive.length;
-              receiveMessage.id = idFiles;
-              receiveMessage.received = null;
-              /*
+              if (receiveMessage.type == "MESS") {
+                this.set_mess(receiveMessage);
+              } else {
+                receiveMessage.sizeReceived = 0;
+                idFiles = this.files_receive.length;
+                receiveMessage.id = idFiles;
+                receiveMessage.received = null;
+                /*
               receiveMessage:{
                 id
                 type,
@@ -130,7 +153,8 @@ export default {
                 received
               }
                */
-              this.add_files_receive(receiveMessage);
+                this.add_files_receive(receiveMessage);
+              }
               return;
             }
           } catch {}
@@ -148,14 +172,13 @@ export default {
             this.set_file(setFilesProcess);
 
             if (receiveMessage.sizeReceived == receiveMessage.size) {
-              //let received = new Blob(receiveBuffer);
-
-              //received.name = receiveMessage.name;
-              //received.size = receiveMessage.size;
-              //received.type = receiveMessage.typeFile;
-              const received = new File([new Blob(receiveBuffer)],receiveMessage.name,{
-                type:receiveMessage.typeFile,
-              })
+              const received = new File(
+                [new Blob(receiveBuffer)],
+                receiveMessage.name,
+                {
+                  type: receiveMessage.typeFile,
+                }
+              );
 
               let setFilesReceived = {
                 index: idFiles,
@@ -169,6 +192,8 @@ export default {
             }
           }
         };
+
+    
       };
 
       let index;
@@ -180,6 +205,7 @@ export default {
           conIce: connection,
           idConnect: idOffer,
           channel: channel,
+          channelMess: channelMess,
           stateConnect: "waiting",
         };
         this.set_connect(dataConnect);
@@ -190,6 +216,7 @@ export default {
           idConnect: idAccept,
           conIce: connection,
           channel: channel,
+          channelMess: channelMess,
           stateConnect: "waiting",
         };
         this.add_list_connect(dataConnect);
@@ -208,7 +235,8 @@ export default {
       return connection;
     },
 
-    async createOffer(idConnect) {
+    async createOffer(idConnect, messageSend) {
+      console.log(messageSend);
       const connection = await this.connectIce(null, idConnect);
 
       const offer = await connection.createOffer();
@@ -218,6 +246,7 @@ export default {
         if (!event.candidate) {
           let message = {
             type: "OFFER",
+            message: messageSend,
             idPerson: this.id_socket,
             idConnect: idConnect,
             icePerson: JSON.stringify(connection.localDescription),
@@ -296,5 +325,4 @@ export default {
 </script>
 
 <style>
-
 </style>

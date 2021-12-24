@@ -16,10 +16,10 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {rel:'stylesheet',href:'https://www.w3schools.com/w3css/4/w3.css'},
-      {rel:'stylesheet',href:'https://www.w3schools.com/lib/w3-theme-blue-grey.css'},
-      {rel:'stylesheet',href:'https://fonts.googleapis.com/css?family=Open+Sans'},
-      {rel:'stylesheet',href:'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'},
+      { rel: 'stylesheet', href: 'https://www.w3schools.com/w3css/4/w3.css' },
+      { rel: 'stylesheet', href: 'https://www.w3schools.com/lib/w3-theme-blue-grey.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Open+Sans' },
+      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' },
     ]
   },
 
@@ -31,9 +31,12 @@ export default {
   plugins: [{
     src: "~/plugins/dialog",
     ssr: false
-  },{
-    src:"~/plugins/notification",
-    ssr:false
+  }, {
+    src: "~/plugins/notification",
+    ssr: false
+  }, {
+    src: '~plugins/vue-quill-editor',
+    ssr: false
   }
   ],
 
@@ -45,15 +48,15 @@ export default {
     '@braid/vue-formulate/nuxt'
   ],
 
- 
+
   modules: [
     '@nuxtjs/axios'
   ],
   axios: {
-    //baseURL:"http://localhost:5000"
-    baseURL: "https://gammazeta-api.herokuapp.com"
+    baseURL: "http://localhost:5000"
+    //baseURL: "https://gammazeta-api.herokuapp.com"
   },
-  
+
   build: {
   }
 }

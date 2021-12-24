@@ -8,6 +8,9 @@
             style="width: 20%"
           /><br />
           <span>Person ID : {{notification.idConnect}} want to connect</span>
+          <div v-if="notification.message != ''">
+            <span>Message : {{notification.message}}</span>
+          </div>
           <div class="w3-row w3-opacity">
             <div class="w3-half">
               <button

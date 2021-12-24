@@ -293,9 +293,10 @@ export default {
           type: this.file.type,
         });
 
+        //this.file = dataSave;
         this.$emit("saveEdit", dataSave);
       }
-
+      console.log(this.type);
       if (this.type == "IMAGE") {
         var canvas = document.getElementById("canvas");
 
@@ -306,6 +307,8 @@ export default {
           const dataSave = new File([dataBlob], this.file.name, {
             type: this.file.type,
           });
+
+          //this.file = dataSave;
           this.$emit("saveEdit", dataSave);
         });
       }

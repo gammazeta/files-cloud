@@ -1,12 +1,5 @@
 [
   {
-    "name": "index-old",
-    "path": "/index-old",
-    "component": "/home/gz/Codes/Pbl/files-cloud/pages/index-old.vue",
-    "chunkName": "pages/index-old",
-    "_name": "_5fa3b1c6"
-  },
-  {
     "name": "test",
     "path": "/test",
     "component": "/home/gz/Codes/Pbl/files-cloud/pages/test.vue",

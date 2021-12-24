@@ -6,4 +6,6 @@ export default {
   get_current_connect:state=>state.current_connect,
 
   get_files_receive:state =>state.files_receive,
+
+  get_mess:state=>state.mess
 }

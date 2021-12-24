@@ -29,8 +29,8 @@ export default {
         }
     },
 
-    close_connect(state,index){
-        state.list_connect.splice(index,1);
+    close_connect(state, index) {
+        state.list_connect.splice(index, 1);
     },
 
     add_files_receive(state, data) {
@@ -58,7 +58,20 @@ export default {
         }
     },
 
-    remove_file(state,index){
-        state.files_receive.splice(index,1);
+    remove_file(state, index) {
+        state.files_receive.splice(index, 1);
+    },
+
+    change_file(state, { oldFile, newFile }) {
+        let index = state.files_receive.indexOf(oldFile);
+        console.log(index);
+        if (index >= 0) {
+            state.files_receive[index].received = newFile;
+        }
+    },
+
+
+    set_mess(state, mess) {
+        state.mess = mess;
     }
 }

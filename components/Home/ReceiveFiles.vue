@@ -7,6 +7,14 @@
         <div v-for="file of files_receive" :key="file.id">
           <div>
             <div class="w3-text-blue fileContainerDiv w3-left">
+              <div class="myProgress" v-if="file.sizeReceived != file.size">
+                <div
+                  class="myBar"
+                  :style="{
+                    width: (file.sizeReceived * 100) / file.size + '%',
+                  }"
+                ></div>
+              </div>
               <div class="fileName" @click="openFileDetail(file)">
                 <i class="fa fa-file-text-o" style="margin-right: 10px"></i
                 ><b>{{ file.name }}</b>
@@ -21,12 +29,7 @@
               </div>
             </div>
           </div>
-          <div class="myProgress" v-if="file.sizeReceived != file.size">
-            <div
-              class="myBar"
-              :style="{ width: (file.sizeReceived * 100) / file.size + '%' }"
-            ></div>
-          </div>
+       
         </div>
       </div>
 
@@ -41,6 +44,7 @@
       v-if="fileDetailData != null"
       :file="fileDetailData"
       @close="fileDetailData = null"
+      @saveEdit="saveEdit"
     />
   </div>
 </template>
@@ -57,16 +61,14 @@ export default {
     }),
   },
   data() {
-    return{
+    return {
       fileDetailData: null,
-    }
-    
+      fileDetailHover: null,
+    };
   },
 
   methods: {
-    ...mapActions([
-      "remove_file"
-    ]),
+    ...mapActions(["remove_file", "change_file"]),
     downloadAll() {
       console.log(this.files_receive);
     },
@@ -84,13 +86,22 @@ export default {
       downloadLink.click();
       downloadLink.remove();
     },
-    removeFile(file){
+    saveEdit(saveData) {
+      let obj = {
+        oldFile: this.fileDetailHover,
+        newFile: saveData,
+      };
+      this.change_file(obj);
+      this.fileDetailData = saveData;
+    },
+    removeFile(file) {
       let indexRemove = this.files_receive.indexOf(file);
       this.remove_file(indexRemove);
     },
 
-    openFileDetail(file){
+    openFileDetail(file) {
       this.fileDetailData = file.received;
+      this.fileDetailHover = file;
     },
   },
 };

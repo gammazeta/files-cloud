@@ -1,4 +1,7 @@
 {
+  "Chat": {
+    "description": "Auto imported from components/Chat.vue"
+  },
   "FileDetail": {
     "description": "Auto imported from components/FileDetail.vue"
   },

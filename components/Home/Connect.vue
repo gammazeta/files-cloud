@@ -20,6 +20,7 @@
               class="w3-input w3-border w3-theme-l5"
               name="last"
               type="text"
+              v-model="message"
             />
           </p>
           <p>
@@ -50,6 +51,13 @@
             >
               <i class="fa fa-times"></i> Close Connect
             </button>
+            <button
+              type="button"
+              class="w3-button w3-theme"
+              @click="openChat()"
+            >
+              <i class="fa fa-comment"></i> Chat
+            </button>
           </p>
           <br />
         </div>
@@ -65,6 +73,7 @@ export default {
   data() {
     return {
       idConnect: null,
+      message:""
     };
   },
   computed: {
@@ -87,7 +96,7 @@ export default {
         alert("id must not be null !!!");
         return;
       } else {
-        this.$emit("createOffer", this.idConnect);
+        this.$emit("createOffer", this.idConnect,this.message);
       }
     },
 
@@ -110,6 +119,10 @@ export default {
       }
       this.set_current_connect(this.list_connect[0]);
     },
+
+    openChat(){
+      this.$emit("openChat");
+    }
   },
 };
 </script>

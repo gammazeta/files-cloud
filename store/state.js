@@ -6,15 +6,17 @@ export default {
   current_connect: null,
   files_receive: [],
 
-  /*urlSocket: "ws://localhost:5000",
+  urlSocket: "ws://localhost:5000",
   iceServers:[
     {
       urls: "stun:stun.l.google.com:19302",          
     },
-  ],*/
+  ],
+
+  mess:null,
 
 
-  urlSocket: "wss://gammazeta-api.herokuapp.com",
+  /*urlSocket: "wss://gammazeta-api.herokuapp.com",
   iceServers: [
     {
       urls: "stun:stun.l.google.com:19302",
@@ -32,6 +34,6 @@ export default {
       ],
       credential: "7885ae4a-2f78-11ec-aa20-0242ac120004",
     },
-  ],
+  ],*/
 
 }

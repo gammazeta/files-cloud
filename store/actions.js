@@ -37,5 +37,13 @@ export default {
 
     remove_file({commit},index){
         commit("remove_file",index);
+    },
+
+    change_file({commit},{oldFile,newFile}){
+        commit("change_file",{oldFile,newFile})
+    },
+
+    set_mess({commit},mess){
+        commit("set_mess",mess)
     }
 }
